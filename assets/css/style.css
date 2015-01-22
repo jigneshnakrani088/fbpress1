@@ -1,0 +1,40 @@
+/* CSS Document */
+  body{
+	font-size:13px;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	color:#666666;
+	background-color:#FFFFFF;
+  }
+  .border-top-radius{
+  	border-top-left-radius:7px;
+	border-top-right-radius:7px;
+  }
+  .border-bottom-radius{
+  	border-bottom-left-radius:7px;
+	border-bottom-right-radius:7px;
+  }
+a, a:hover{
+	outline:none; 
+	text-decoration:none; 
+	color:#059BD8; 
+}
+.btn-color{
+ background-color: rgba(101, 154, 200, 0.61);
+}
+.image{
+	height:150px;
+	width:165px;
+	border: 2px solid #666666;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px; 
+    border-radius: 7px; 
+}
+
+.album{
+	background-color: rgb(143, 174, 190);
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px; 
+	border-radius: 7px; 
+	padding: 15px;
+	margin:7px;
+}
