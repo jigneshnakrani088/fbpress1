@@ -18,7 +18,7 @@
 			<div class="col-md-12 col-sm-12">
 				<?php
 session_start();
-
+require_once 'remove_dir.php';
 require_once 'Zend/Loader.php';
 Zend_Loader::loadClass('Zend_Gdata_Photos');
 Zend_Loader::loadClass('Zend_Gdata_ClientLogin');
@@ -34,9 +34,10 @@ if ( isset( $_GET['album_id'] ) )
 	
 	if ( file_exists( $album_id ) ) 
 	{
-				add_new_album( $entry, $gp, $album_id, $album_id );
-				rrmdir($album_id);
-				$response = 1;
+		add_new_album( $entry, $gp, $album_id, $album_id );
+		$remove_dir = new remove_dir();
+		$remove_dir->rrmdir($album_id);
+		$response = 1;
 	}else
 	{
 			$response = 0;
@@ -49,7 +50,8 @@ if ( isset( $_GET['album_id'] ) )
 			if ( file_exists( $album_id ) ) 
 			{
 				add_new_album($entry, $gp, $album_id, $album_id);
-				rrmdir($album_id);
+				$remove_dir = new remove_dir();
+				$remove_dir->rrmdir($album_id);
 				$response = 1;
 			}
 	}
@@ -150,22 +152,6 @@ function add_new_photo_to_album( $gp, $path, $new_album_name ) {
 	$album_query->setUser( $user_name );
 	$album_query->setAlbumName( $new_album_name );
 	$gp->insertPhotoEntry( $photo_entry, $album_query->getQueryUrl() );
-}
-
-function rrmdir($dir) {
-	if (is_dir($dir)) {
-		$objects = scandir($dir);
-		foreach ($objects as $object) {
-			if ($object != "." && $object != "..") {
-				if (filetype($dir . "/" . $object) == "dir")
-					rrmdir($dir . "/" . $object);
-				else
-					unlink($dir . "/" . $object);
-			}
-		}
-		reset($objects);
-		rmdir($dir);
-	}
 }
 
 ?>

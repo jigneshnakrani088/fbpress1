@@ -37,7 +37,7 @@ function zipit(responce){
 		var n=Math.round(100/responce.length);
 		$('#link').hide();
 		$('html, body').animate({ scrollTop: $('#profile_head').offset().top }, 'slow');
-		if(responce.length !==1) { $('.progress-bar').width(1).text(1);}
+		if(responce.length !==1) { $('.progress-bar').width(10).text(10);}
 		else { $('.progress-bar').width(11).text(11);}
 		var val=0;
 		FB.api('/me', function(res) {
@@ -59,13 +59,17 @@ function zipit(responce){
 											{
 												val=val+n;
 												$('.progress-bar').width(val + '%').text(val + '%');
-												setTimeout(function(){  $('#progress-bar').hide();}, 100);
+												setTimeout(function(){  $('#progress-bar').hide();}, 200);
 												$('#link').show(400);
 												var res1 = jQuery.parseJSON(response);
 												$('#link').html("<h4><a href='"+ res1.url +"'>click here for download..</a></h4>");
 												$('#link').click(function(){$('#link').hide(600);$('#progress-bar').hide();});
 											}
-											else{ val=val+n;	 $('.progress-bar').width(val + '%').text(val + '%');}								
+											else
+											{ 	
+												val=val+n;
+												$('.progress-bar').width(val + '%').text(val + '%');
+											}								
 										}
 								});
 						});

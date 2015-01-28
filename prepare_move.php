@@ -1,6 +1,7 @@
 <?php
 $reponse = array();
 require_once 'lib/facebook/facebook.php';
+require_once'remove_dir.php';
 $facebook = new facebook(array(						 //	JigsApp								demo
 	'appId'  => '815325925197979',   				 // 815325925197979  					1523273831269396
 	'secret' => 'e6dcecf8b128ca7dcbd5b2a3797c0661',  // e6dcecf8b128ca7dcbd5b2a3797c0661   	05e1d394341cb408eda496cd4d174a4f
@@ -39,21 +40,6 @@ if (isset($_GET["album_id"]))
 		}
 }
 
-function rrmdir($dir) {
-	if (is_dir($dir)) {
-		$objects = scandir($dir);
-		foreach ($objects as $object) {
-			if ($object != "." && $object != "..") {
-				if (filetype($dir . "/" . $object) == "dir")
-					rrmdir($dir . "/" . $object);
-				else
-					unlink($dir . "/" . $object);
-			}
-		}
-		reset($objects);
-		rmdir($dir);
-	}
-}
 function getfile($url, $dir) {
 	ini_set('max_execution_time', 300);
 	try{
@@ -63,7 +49,10 @@ function getfile($url, $dir) {
 
 function prepare_move($files = array(), $album_id) {
 	if (file_exists($album_id)){
-		rrmdir($album_id);	}
+
+		$remove_dir = new remove_dir();
+		$remove_dir->rrmdir($album_id);	
+	}
 
 	mkdir($album_id);
 	if (is_array($files)) {
