@@ -1,3 +1,1 @@
-<strong>FbPress(Facebook Assignment)::</strong> facebook album Download and upload to Picasa+Google
-=====================================
-Working Demo :  <a href="fbassignment-jigspractice.rhcloud.com">FbPress</a> 
+<strong>FbPress(Facebook Assignment):: </strong> facebook album Download and upload to Picasa+Google<br/>=====================================<br/>Working Demo :  <a href="fbassignment-jigspractice.rhcloud.com">FbPress</a>
