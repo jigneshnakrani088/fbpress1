@@ -19,7 +19,7 @@ class remove_dirTest extends PHPUnit_Framework_TestCase {
 		//-- act to remove dir
         $this->remove_dir = new remove_dir();
     	$actual = $this->remove_dir->rrmdir( $directory );
-       	$this->assertEquals( $actual, $actual );
+       	$this->assertEquals( $actual, NULL );
     }
 }
 

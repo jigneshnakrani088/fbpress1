@@ -45,7 +45,7 @@ if ( isset( $_GET['album_id'] ) )
 } else if (isset($_GET['album_ids'])) 
 {
 	$album_ids = explode(",", $_GET['album_ids']);
-	foreach ($albumids as $album_id) 
+	foreach ($album_ids as $album_id) 
 	{
 			if ( file_exists( $album_id ) ) 
 			{
