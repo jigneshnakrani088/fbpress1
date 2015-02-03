@@ -26,28 +26,36 @@
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 		<ol class="carousel-indicators">
 				 <?php
-					 $str =$_POST['source'];
-					$ary=explode(",",$str);
-					$n=sizeof($ary);
-					for($j=0; $j<$n; $j++)
+				 	if(isset($_POST['source']))
 					{
-						if($j==0){
-							echo '<li data-target="#carousel-example-generic" data-slide-to="'.$j.'" class="active"></li> ';
-						}
-						else{
-						echo ' <li data-target="#carousel-example-generic" data-slide-to="'.$j.'"></li>';
-						}
-					}
-		echo '</ol>
-		<div class="carousel-inner" >';
-					for($j=0; $j<$n; $j++)
-					{
-						if($j==0){
-							echo '<div class="item active"> <img src="'. $ary[$j] .'"  />	</div>';
-						}
-						else{
-						echo '<div class="item "> <img src="'. $ary[$j] .'" />	</div>';
-						}
+							$str =$_POST['source'];
+							$ary=explode(",",$str);
+							$n=sizeof($ary);
+							for($j=0; $j<$n; $j++)
+							{
+								if($j==0){
+									echo '<li data-target="#carousel-example-generic" data-slide-to="'.$j.'" class="active"></li> ';
+								}
+								else{
+								echo ' <li data-target="#carousel-example-generic" data-slide-to="'.$j.'"></li>';
+								}
+							}
+							echo '</ol>
+							<div class="carousel-inner" >';
+							for($j=0; $j<$n; $j++)
+							{
+								if($j==0){
+									echo '<div class="item active"> <img src="'. $ary[$j] .'"  />	</div>';
+								}
+								else{
+								echo '<div class="item "> <img src="'. $ary[$j] .'" align="center"/>	</div>';
+								}
+							}
+					}else{
+						$host  = $_SERVER['HTTP_HOST'];
+						$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+						$url= 'http://'.$host.$uri.'/index.php';
+						header("Location: $url");
 					}
 				?>
 			</div>
