@@ -30,7 +30,7 @@ function slideShow(albumId){
 											 $(form).submit();
 											});
 }
-function zipit(responce){
+/*function zipit(responce){
 	if ( responce != false )
 	{
 		$('#progress-bar').show();
@@ -79,6 +79,55 @@ function zipit(responce){
 	}
 }
 
+*/
+
+function zipit(responce){
+	if ( responce != false ){
+		$('#progress-bar').show();
+		var n=Math.round(100/responce.length);
+		$('#link').hide();
+		$('html, body').animate({ scrollTop: $('#profile_head').offset().top }, 'slow');
+		
+		if(responce.length !==1) { $('.progress-bar').width(1).text(1);}
+		else { $('.progress-bar').width(11).text(11);}
+		FB.api('/me', function(user) {
+							   var data1 = {'album_id': user.name,}
+		var val=0;
+		$.post('remove_zip.php', data1 , function(){
+			if(true){
+			 $.each( responce, function( index, value ){
+					var data = {'user_id':user.name,
+						'album_id': value,
+					}
+					
+				$.post('zip.php',data, function(response){
+						 
+							if ( responce.length-1 == index ){
+								val=val+n;
+								$('.progress-bar').width(val + '%').text(val + '%');
+								setTimeout(function(){  $('#progress-bar').hide();}, 100);
+								var res = jQuery.parseJSON(response);
+								if(res.status==false){
+									alert("Opps Something went wrong sorry..");	
+								}else{
+									$('#link').show(400);
+									var res1 = jQuery.parseJSON(response);
+									$('#link').html("<h4><a href='"+ res1.url +"'>click here for download..</a></h4>");
+									$('#link').click(function(){$('#link').hide(600);$('#progress-bar').hide();});
+								}
+								
+							}else{
+								val=val+n;
+								 $('.progress-bar').width(val + '%').text(val + '%');
+							}
+				})
+			});
+		 }
+		});										
+		
+		});
+	}
+}
 
 function CheckForm(){
 	var selectedcheckbox = [];
