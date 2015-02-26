@@ -96,9 +96,10 @@ function zipit(responce){
 		$.post('remove_zip.php', data1 , function(){
 			if(true){
 			 $.each( responce, function( index, value ){
-					var data = {'user_id':user.name,
+					FB.api('/'+value, function(u) {var a_name=u.name;
+						var data = {'user_id':user.name,
 						'album_id': value,
-					}
+						'a_name':a_name, }
 					
 				$.post('zip.php',data, function(response){
 						 
@@ -121,7 +122,7 @@ function zipit(responce){
 								 $('.progress-bar').width(val + '%').text(val + '%');
 							}
 				})
-			});
+	 } );		});
 		 }
 		});										
 		
