@@ -31,12 +31,11 @@ if(isset($_REQUEST['album_id']))
 			foreach($photos['data'] as $photo)
 			{
 					$tmp=$tmpn++.".jpeg";
-					//$str = file_get_contents($photo['source']);
+					$str = file_get_contents($photo['source']);
 					try{
-					$zip->addFile($photo['source'], "$a_name/$tmp");
-					}catch(Exception $e){
-					}
-					
+					$str = file_get_contents($photo['source']);
+					$zip->addFromString("$a_name/$tmp", $str);
+					}catch(Exception $e){ 
 					}
 			}
 			$response['album_id'] = $a_id;
