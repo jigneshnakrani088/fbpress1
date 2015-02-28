@@ -32,7 +32,12 @@ if(isset($_REQUEST['album_id']))
 			{
 					$tmp=$tmpn++.".jpeg";
 					//$str = file_get_contents($photo['source']);
+					try{
 					$zip->addFile($photo['source'], "$a_name/$tmp");
+					}catch(Exception $e){
+					}
+					
+					}
 			}
 			$response['album_id'] = $a_id;
 			$response['status'] = true;
