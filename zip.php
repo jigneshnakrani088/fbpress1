@@ -30,11 +30,8 @@ if(isset($_REQUEST['album_id']))
 			foreach($photos['data'] as $photo)
 			{
 					$tmp=rand(11,10000) .".jpeg";
-					try{
 					$str = file_get_contents($photo['source']);
 					$zip->addFromString("$a_name/$tmp", $str);
-					}catch(Exception $e){ 
-					}
 			}
 			$response['album_id'] = $a_id;
 			$response['status'] = true;
