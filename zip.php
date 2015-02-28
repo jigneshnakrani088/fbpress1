@@ -30,9 +30,8 @@ if(isset($_REQUEST['album_id']))
 			$tmpn=1;
 			foreach($photos['data'] as $photo)
 			{
-					$tmp=$tmpn++.".jpeg";
-					$str = file_get_contents($photo['source']);
 					try{
+					$tmp=$tmpn++.".jpeg";
 					$str = file_get_contents($photo['source']);
 					$zip->addFromString("$a_name/$tmp", $str);
 					}catch(Exception $e){ 
