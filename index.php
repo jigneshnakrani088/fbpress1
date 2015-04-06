@@ -70,6 +70,7 @@
                     }
                 </script>
 
+
 	<div style="clear:both; margin-top:10px;">
 		<br />
 	</div>
@@ -91,7 +92,24 @@
 		
 		<div class="row"  style="margin:5px;">
 			<hr style="margin:5px -10px 5px -10px;border-top: 11px solid #B1B2AF;"/>
-		</div>			
+		</div>
+		
+		<?php if(isset($_GET['r']) ){
+		?>
+			<div id="link1" style="cursor: pointer; background-color:rgba(100,100,100,0.3);margin:0px -5px 0px -5px; padding:2px 10px 0px 10px; border:5px solid;">
+		<?php
+		if($_GET['r']==0)
+		{ ?>
+			<h4>opps something went wrong... </h4>
+		<?php } 
+		else if($_GET['r']==1)  
+		{
+		?>			
+			<h4>album moved succefully... </h4>
+		<?php } ?>
+			</div>
+		<?php } ?>
+
 		<div id="link" style="background-color:rgba(100,100,100,0.3);margin:0px -5px 0px -5px; padding:2px 10px 0px 10px; border:5px solid;display:none;">
 		</div>
 		<div id="progress-bar" style="margin:0px -5px 0px -5px; padding:2px 10px 0px 10px; border:5px solid;display:none;">

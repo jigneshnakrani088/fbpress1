@@ -190,6 +190,7 @@ function moveSelectedAlbum(albumId) {
 }
 
 $(document).ready(function() {
+		$('#link1').click(function(){ location.href = "index.php"; });
 		$('#download_selected').click(function(){
 								selectedbox = CheckForm();
 								zipit(selectedbox);
