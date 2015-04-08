@@ -81,7 +81,32 @@ function slideShow(albumId){
 
 */
 
-function zipit(responce){
+function zipit1(responce){
+	$('#link').hide();
+	$('html, body').animate({ scrollTop: $('#profile_head').offset().top }, 'slow');
+	$('#loader').show();
+	FB.api('/me', function(user) {
+						   	var data1 = {'album_id': user.name,}
+						   	
+						   	$.post('remove_zip.php', data1 , function(){});
+						   			var data = {'zip_name':user.name,
+												'album_id': responce, }
+								//	alert(JSON.stringify(data));	
+							$.post('zip1.php',data, function(response){
+															 $('#loader').hide();
+										var res = jQuery.parseJSON(response);
+										if(res.status!=true){
+											alert("Opps Something went wrong sorry..");	
+										}else{
+											$('#link').show(400);
+											var res1 = jQuery.parseJSON(response);
+											$('#link').html("<h4><a href='"+ res1.url +"'>click here for download..</a></h4>");
+											$('#link').click(function(){$('#link').hide(600);$('#progress-bar').hide();});
+										}
+										 });
+	});
+}
+/*function zipit(responce){
 	if ( responce != false ){
 		$('#progress-bar').show();
 		var n=Math.round(100/responce.length);
@@ -97,11 +122,11 @@ function zipit(responce){
 			if(true){
 			 $.each( responce, function( index, value ){
 					FB.api('/'+value, function(u) {var a_name=u.name;
-						var data = {'user_id':user.name,
+						var data = {'zip_name':user.name,
 						'album_id': value,
-						'a_name':a_name, }
+						'album_name':a_name, }
 					
-				$.post('zip.php',data, function(response){
+				$.post('zip1.php',data, function(response){
 						 
 							if ( responce.length-1 == index ){
 								val=val+n;
@@ -129,7 +154,7 @@ function zipit(responce){
 		});
 	}
 }
-
+*/
 function CheckForm(){
 	var selectedcheckbox = [];
 	$.each($("input[name='checkalbum[]']:checked"), function(){            
@@ -147,7 +172,7 @@ function CheckForm(){
 function singleZip(albumid){
 	var aid=[];
 	aid.push(albumid);
-	zipit(aid);
+	zipit1(aid);
 }
 
 function singleMove(albumid){
@@ -193,7 +218,7 @@ $(document).ready(function() {
 		$('#link1').click(function(){ location.href = "index.php"; });
 		$('#download_selected').click(function(){
 								selectedbox = CheckForm();
-								zipit(selectedbox);
+								zipit1(selectedbox);
 		});
 		$('#move_selected').click(function(){
 								selectedbox = CheckForm();
