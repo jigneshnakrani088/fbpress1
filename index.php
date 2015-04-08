@@ -34,7 +34,7 @@
 
                     window.fbAsyncInit = function() {
                         FB.init({							 //demo					jigsApp
-                            appId      : '1523273831269396', //1523273831269396    815325925197979
+                            appId      : '815325925197979', //1523273831269396    815325925197979
                             cookie     : true,  
                             xfbml      : true,  
                             version    : 'v2.1' 
