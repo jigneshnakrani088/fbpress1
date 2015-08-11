@@ -86,6 +86,8 @@ function singleMove(albumid){
 }
 
 function moveAlbum(albumId) {
+	alert('Temporary unavailable,Sorry...');
+	/*
 	$('#loader').show();
 	$.ajax({
 		url : 'prepare_move.php?album_id=' + albumId + '&move=true',
@@ -98,10 +100,12 @@ function moveAlbum(albumId) {
 			alert('Opps.. Error Occure on server,Sorry...')
 			$('#loader').hide(200);	
 		}
-	});
+	}); */
 }
 
 function moveSelectedAlbum(albumId) {
+	alert('Temporary unavailable,Sorry...');
+	/*
 	$('#loader').show();
 	$.ajax({
 		url : 'prepare_move.php?album_ids=' + albumId + '&move=true',
@@ -114,7 +118,7 @@ function moveSelectedAlbum(albumId) {
 			alert('Opps.. Error Occure on server,Sorry...')
 			$('#loader').hide(200);	
 		}
-	});
+	}); */
 }
 
 $(document).ready(function() {
